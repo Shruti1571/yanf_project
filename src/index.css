@@ -1,0 +1,112 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+
+@layer base {
+  :root {
+    --background: 230 25% 5%;
+    --foreground: 210 40% 92%;
+    --card: 230 20% 10%;
+    --card-foreground: 210 40% 92%;
+    --popover: 230 20% 10%;
+    --popover-foreground: 210 40% 92%;
+    --primary: 200 90% 55%;
+    --primary-foreground: 230 25% 5%;
+    --secondary: 260 60% 55%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 230 15% 15%;
+    --muted-foreground: 215 15% 55%;
+    --accent: 170 70% 45%;
+    --accent-foreground: 230 25% 5%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 230 15% 18%;
+    --input: 230 15% 18%;
+    --ring: 200 90% 55%;
+    --radius: 0.75rem;
+    --glow-primary: 0 0 40px hsl(200 90% 55% / 0.3);
+    --glow-secondary: 0 0 60px hsl(260 60% 55% / 0.2);
+    --glow-accent: 0 0 30px hsl(170 70% 45% / 0.25);
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: var(--glow-primary);
+  }
+  .text-glow-accent {
+    text-shadow: var(--glow-accent);
+  }
+}
+
+/* Stars background */
+.stars {
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, hsl(210 40% 92% / 0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, hsl(210 40% 92% / 0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, hsl(210 40% 92% / 0.4), transparent),
+    radial-gradient(1px 1px at 130px 80px, hsl(210 40% 92% / 0.2), transparent),
+    radial-gradient(2px 2px at 160px 30px, hsl(200 90% 55% / 0.3), transparent),
+    radial-gradient(1px 1px at 200px 60px, hsl(210 40% 92% / 0.15), transparent);
+  background-size: 220px 100px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+@keyframes spin-globe {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 30px hsl(200 90% 55% / 0.2), 0 0 60px hsl(260 60% 55% / 0.1); }
+  50% { box-shadow: 0 0 50px hsl(200 90% 55% / 0.35), 0 0 90px hsl(260 60% 55% / 0.15); }
+}
+
+.globe-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.globe-sphere {
+  transform-style: preserve-3d;
+  animation: spin-globe 25s linear infinite;
+}
+
+.float-animation {
+  animation: float 6s ease-in-out infinite;
+}
+
+.globe-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
