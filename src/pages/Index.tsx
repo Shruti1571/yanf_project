@@ -13,7 +13,7 @@ const Index = () => {
         </div>
 
         <div className="text-center space-y-3 mt-4">
-          <h1 className="text-4xl md:text-5xl font-bold font-display text-glow text-foreground tracking-tight flex items-baseline justify-center">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold font-display text-glow text-foreground tracking-tight px-4">
             <span className="text-5xl md:text-6xl font-extrabold">Y</span>
             <span className="text-2xl md:text-3xl font-normal opacity-80">𝑜𝓊𝓉𝒽</span>
             <span className="text-5xl md:text-6xl font-extrabold ml-1">A</span>
@@ -23,7 +23,7 @@ const Index = () => {
             <span className="text-5xl md:text-6xl font-extrabold ml-1">F</span>
             <span className="text-2xl md:text-3xl font-normal opacity-80">𝓇𝑜𝓃𝓉</span>
           </h1>
-          <p className="text-muted-foreground text-lg max-w-md mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-lg max-w-md mx-auto px-4">
             Something amazing is being built. Stay tuned for launch.
           </p>
         </div>

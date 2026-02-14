@@ -34,6 +34,11 @@ const greetings: GlobeItem[] = [
 ];
 
 const RotatingGlobe = () => {
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
+  const globeSize = isMobile ? 260 : 400;
+  const translateZ = isMobile ? 110 : 180;
+  const ringSmall = isMobile ? 140 : 220;
+  const ringLarge = isMobile ? 170 : 260;
   const sphereItems = useMemo(() => {
     const items: { greeting: GlobeItem; rotateY: number; rotateX: number; translateZ: number }[] = [];
     const count = greetings.length;
@@ -44,24 +49,24 @@ const RotatingGlobe = () => {
       const theta = goldenAngle * i;
       const rotateY = (Math.atan2(radius * Math.sin(theta), radius * Math.cos(theta)) * 180) / Math.PI;
       const rotateX = (Math.asin(y) * 180) / Math.PI;
-      items.push({ greeting: greetings[i], rotateY, rotateX, translateZ: 180 });
+      items.push({ greeting: greetings[i], rotateY, rotateX, translateZ });
     }
     return items;
-  }, []);
+ }, [translateZ]);
 
   return (
-    <div className="globe-container relative flex items-center justify-center" style={{ width: 400, height: 400 }}>
+    <div className="globe-container relative flex items-center justify-center" style={{ width: globeSize, height: globeSize }}>
       {/* Glow backdrop */}
       <div className="absolute inset-0 rounded-full globe-glow" />
 
       {/* Wireframe rings */}
       <div
         className="absolute rounded-full border border-primary/20"
-        style={{ width: 220, height: 220, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+        style={{ width: ringSmall, height: ringSmall, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
       />
       <div
         className="absolute rounded-full border border-secondary/15"
-        style={{ width: 260, height: 260, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+        style={{ width: ringLarge, height: ringLarge, top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
       />
 
       {/* Rotating items */}
@@ -80,11 +85,11 @@ const RotatingGlobe = () => {
               className="flex flex-col items-center gap-0.5 select-none"
               style={{ transform: "translateX(-50%) translateY(-50%)" }}
             >
-              <span className="text-2xl">{greeting.flag}</span>
-              <span className="text-xs font-medium text-foreground/80 whitespace-nowrap font-display">
+              <span className="text-lg sm:text-2xl">{greeting.flag}</span>
+              <span className="text-[10px] sm:text-xs font-medium text-foreground/80 whitespace-nowrap font-display">
                 {greeting.text}
               </span>
-              <span className="text-[9px] text-muted-foreground whitespace-nowrap">
+              <span className="text-[8px] sm:text-[9px] text-muted-foreground whitespace-nowrap">
                 {greeting.lang}
               </span>
             </div>
